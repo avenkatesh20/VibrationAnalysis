@@ -12,7 +12,7 @@ static void CCONV writeToFile(PhidgetAccelerometerHandle ch, void * ctx, const d
   char accelstr[] = "(";
   char div[] = " | ";
   const char fmt[] = "%f";
-  fputs(accelstr, PHIDGETDATA);
+//  fputs(accelstr, PHIDGETDATA);
 
   for (int i = 0; i < 3; i ++){
     int size = snprintf(0,0,fmt,acceleration[i]);
@@ -29,7 +29,8 @@ static void CCONV writeToFile(PhidgetAccelerometerHandle ch, void * ctx, const d
   char time[timesize + 1];
   sprintf(time,fmt, timestamp);
   fputs(time, PHIDGETDATA);
-  fputs(")\n", PHIDGETDATA);
+  fputs(",", PHIDGETDATA);
+//  fputs(")\n", PHIDGETDATA);
   //str_append(acceleration, sprintf(acceleration[0]));
 //  fputs("Acceleration: \t%lf  |  %lf  |  %lf\n", acceleration[0], acceleration[1], acceleration[2]);
 //	fputs("Timestamp: %lf\n", timestamp);

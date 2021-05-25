@@ -38,9 +38,17 @@ static void CCONV writeToFile(PhidgetAccelerometerHandle ch, void * ctx, const d
 }
 
 static void CCONV onAccelerationChange(PhidgetAccelerometerHandle ch, void * ctx, const double acceleration[3], double timestamp) {
+  //Convert GForce into m/s^2
+  float acceleration_conv [3];
+  for (int i = 0; i < 3; i++){
+    double curr_acc = acceleration[i];
+    acceleration_conv[i] = curr_acc/9.8;
+  }
+  //Convet time from ms to s
+  timestamp = timestamp/1000;
   writeToFile(ch, ctx, acceleration, timestamp);
-  printf("Acceleration: \t%lf  |  %lf  |  %lf\n", acceleration[0], acceleration[1], acceleration[2]);
-	printf("Timestamp: %lf\n", timestamp);
+  printf("Acceleration: \t%lf  |  %lf  |  %lf (m/s^2)\n", acceleration[0], acceleration[1], acceleration[2]);
+	printf("Timestamp: %lf (s)\n", timestamp);
 	printf("----------\n");
 
 }

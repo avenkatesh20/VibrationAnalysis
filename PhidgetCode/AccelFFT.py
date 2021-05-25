@@ -27,35 +27,63 @@ def getPhidgetData():
     time = [time for time in time if time]
     time = np.asfarray(time,float)
 
+    #Plotting Waveforms
+    plt.figure()
+    plt.title("X vs time Waveform")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Amplitude (m/s^2)")
+    plt.plot(time, x)
+    plt.savefig("X Waveform")
+
+    plt.figure()
+    plt.title("Y vs time Waveform")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Amplitude (m/s^2)")
+    plt.plot(time, y)
+    plt.savefig("Y Waveform")
+
+    plt.figure()
+    plt.title("Z vs time Waveform")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Amplitude (m/s^2)")
+    plt.plot(time, z)
+    plt.savefig("Z Waveform")
+
 def FastFourierTrans():
     global x, y, z, time
     xFFT = fft(x)
     freq_xFFT = fftfreq(len(xFFT)) * (1/(stat.mean(time)))
     plt.figure()
-    plt.title("X FFT")
+    plt.title("FFT of X Waveform")
     plt.yscale('log')
+    plt.xlabel("Frequencies (Hz)")
+    plt.ylabel("Amplitude (m/s^2)")
     plt.plot(freq_xFFT, xFFT)
     plt.savefig("X FFT")
-    plt.show()
+    #plt.show()
 
 
     yFFT = fft(y)
     freq_yFFT = fftfreq(len(yFFT)) * (1/(stat.mean(time)))
     plt.figure()
-    plt.title("Y FFT")
+    plt.title("FFT of Y Waveform")
     plt.yscale('log')
+    plt.xlabel("Frequencies (Hz)")
+    plt.ylabel("Amplitude (m/s^2)")
     plt.plot(freq_yFFT, yFFT)
     plt.savefig("Y FFT")
-    plt.show()
+    #plt.show()
 
     zFFT = fft(z)
     freq_zFFT = fftfreq(len(zFFT)) * (1/(stat.mean(time)))
     plt.figure()
-    plt.title("Z FFT")
+    plt.title("FFT of Z Waveform")
     plt.yscale('log')
+    plt.xlabel("Frequencies (Hz)")
+    plt.ylabel("Amplitude (m/s^2)")
     plt.plot(freq_zFFT, zFFT)
     plt.savefig("Z FFT")
-    plt.show()
+    #plt.show()
 
 
 
